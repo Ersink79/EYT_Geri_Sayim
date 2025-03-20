@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geri Sayým Sayacý</title>
+    <style>
+        body {
+            background: url('x789.png') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .countdown-container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .countdown {
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <h1>Geri Sayým Sayacý</h1>
+        <div class="countdown" id="countdown"></div>
+    </div>
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date('2025-04-12T18:00:00').getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+            
+            if (difference <= 0) {
+                document.getElementById('countdown').innerHTML = 'Süre Doldu!';
+                return;
+            }
+            
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').innerHTML = 
+                `${days} Gün ${hours} Saat ${minutes} Dakika ${seconds} Saniye`;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
